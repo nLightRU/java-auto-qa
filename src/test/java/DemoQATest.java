@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,12 +17,6 @@ public class DemoQATest {
     }
 
     @Test
-    void goToNextTest() {
-        open("https://demoqa.com/text-box");
-        $("li#item-1").click();
-    }
-
-    @Test
     @DisplayName("Demo QA Text Box")
     void textBoxTest() {
         open("/text-box");
@@ -31,9 +26,11 @@ public class DemoQATest {
         $("#name").shouldHave(text("Vasya"));
     }
 
+    @Disabled
     @Test
+    @DisplayName("Demo QA Forms")
     void formTest() {
-        open("https://demoqa.com/automation-practice-form");
+        open("/automation-practice-form");
         $("#firstName").setValue("Vasya");
         $("#submit").click();
     }
