@@ -3,6 +3,8 @@ package me.nlight.PageObjects;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -42,6 +44,10 @@ public class SwagLabs {
 
     public boolean isLoginPage() {
         return $(".login_container").exists();
+    }
 
+    public boolean hasLoginError(String error_text) {
+        String error = $(by("data-test", "error")).getText();
+        return error.contains(error_text);
     }
 }
