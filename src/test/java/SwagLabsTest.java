@@ -1,6 +1,8 @@
+import SwagLabs.SwagLabsBase;
 import com.codeborne.selenide.Configuration;
 
 import com.codeborne.selenide.Selenide;
+import me.nlight.PageObjects.SwagLabsPageObject;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -15,22 +17,13 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class SwagLabsTest {
-//    @BeforeAll
-//    static void setUp() {
-//        Configuration.baseUrl = "https://www.saucedemo.com";
-//
-//        // remove password popups
-//        // https://www.repeato.app/disabling-chromes-password-save-pop-up-using-selenium-webdriver/
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--disable-web-security");
-//        Map<String, Object> prefs = new HashMap<>();
-//        prefs.put("credentials_enable_service", false);
-//        prefs.put("profile.password_manager_enabled", false);
-//        options.setExperimentalOption("prefs", prefs);
-//        Configuration.browserCapabilities = options;
-//
-//    }
-//
-
+public class SwagLabsTest extends SwagLabsBase {
+    @Test
+    public void addToCartTest() {
+        String username = "standard_user", password = "secret_sauce";
+        SwagLabsPageObject productsPage = open("/", SwagLabsPageObject.class);
+        productsPage.login(username, password);
+        productsPage.addToCard();
+        sleep(5000);
+    }
 }

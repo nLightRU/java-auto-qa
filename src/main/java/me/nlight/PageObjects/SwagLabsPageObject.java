@@ -3,12 +3,11 @@ package me.nlight.PageObjects;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class SwagLabs {
+public class SwagLabsPageObject {
 
     @FindBy(id="user-name")
     private SelenideElement loginFieldUsername;
@@ -25,17 +24,25 @@ public class SwagLabs {
     @FindBy(xpath="//*[@id=\"logout_sidebar_link\"]")
     private SelenideElement logoutLink;
 
-    public SwagLabs login(String username, String password) {
+    @FindBy(id="add-to-cart-sauce-labs-backpack")
+    private SelenideElement addToCartButton;
+
+    public SwagLabsPageObject login(String username, String password) {
         loginFieldUsername.setValue(username);
         loginFieldPassword.setValue(password);
         loginButton.click();
-        return page(SwagLabs.class);
+        return page(SwagLabsPageObject.class);
     }
 
-    public SwagLabs logout() {
+    public SwagLabsPageObject logout() {
         burgerMenu.click();
         logoutLink.click();
-        return page(SwagLabs.class);
+        return page(SwagLabsPageObject.class);
+    }
+
+    public SwagLabsPageObject addToCard() {
+        addToCartButton.click();
+        return page(SwagLabsPageObject.class);
     }
 
     public boolean hasBurgerMenu() {
