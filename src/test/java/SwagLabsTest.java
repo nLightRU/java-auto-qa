@@ -1,7 +1,6 @@
 import com.codeborne.selenide.Configuration;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 
@@ -17,12 +16,16 @@ public class SwagLabsTest {
     }
 
     @Test
-    @Order(1)
     void TestLogin() {
         open("/");
         $("#user-name").setValue("standard_user");
         $("#password").setValue("secret_sauce");
         $("#login-button").click();
         $(by("data-test", "title")).shouldHave(text("Products"));
+    }
+
+    @Test
+    void TestOther() {
+
     }
 }
