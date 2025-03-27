@@ -1,7 +1,6 @@
 plugins {
-    id 'application'
     id 'java'
-    id "io.freefair.lombok" version "8.10.2"
+    id 'application'
 }
 
 group = 'me.nlight'
@@ -9,6 +8,10 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+configurations {
+    testCompile
 }
 
 ext {
@@ -24,10 +27,20 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
-application {
-    mainClass = 'me.nlight.Main'
+test {
+    useJUnitPlatform ()
+
+    include("")
 }
 
-test {
-    useJUnitPlatform()
+tasks.register('testAuth', Test) {
+    useJUnitPlatform {
+        includeTags("auth")
+    }
+}
+
+tasks.register('testProducts', Test) {
+    useJUnitPlatform {
+        includeTags("products")
+    }
 }

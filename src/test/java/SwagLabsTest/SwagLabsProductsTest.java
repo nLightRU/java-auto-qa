@@ -39,6 +39,7 @@ public class SwagLabsProductsTest {
 
     @Test
     @DisplayName("Добавить первый в корзину")
+    @Tag("Products")
     public void addOneToCartTest() {
         SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
         SwagLabsProductsPage products = loginPage.login_as_standard();
@@ -50,6 +51,7 @@ public class SwagLabsProductsTest {
 
     @Test
     @DisplayName("Добавить два товара в корзину")
+    @Tag("Products")
     void addTwoProductsToCartTest() {
         SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
         SwagLabsProductsPage productsPage = loginPage.login_as_standard();
@@ -64,12 +66,14 @@ public class SwagLabsProductsTest {
 
     @Disabled
     @Test
+    @Tag("Products")
     public void sortByNameTest() {
 
     }
 
     @Disabled
     @Test
+    @Tag("Products")
     public void sortByPriceTest() {
 
     }
