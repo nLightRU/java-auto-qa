@@ -7,53 +7,53 @@ import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class SwagLabsPageObject {
+public class SwagLabsLoginPage {
 
     @FindBy(id="user-name")
-    private SelenideElement loginFieldUsername;
+    private static SelenideElement loginFieldUsername;
 
     @FindBy(id="password")
-    private SelenideElement loginFieldPassword;
+    private static SelenideElement loginFieldPassword;
 
     @FindBy(id="login-button")
-    private SelenideElement loginButton;
+    private static SelenideElement loginButton;
 
     @FindBy(id="react-burger-menu-btn")
-    private SelenideElement burgerMenu;
+    private static SelenideElement burgerMenu;
 
     @FindBy(xpath="//*[@id=\"logout_sidebar_link\"]")
-    private SelenideElement logoutLink;
+    private static SelenideElement logoutLink;
 
     @FindBy(id="add-to-cart-sauce-labs-backpack")
-    private SelenideElement addToCartButton;
+    private static SelenideElement addToCartButton;
 
-    public SwagLabsPageObject login(String username, String password) {
+    public static SwagLabsLoginPage login(String username, String password) {
         loginFieldUsername.setValue(username);
         loginFieldPassword.setValue(password);
         loginButton.click();
-        return page(SwagLabsPageObject.class);
+        return page(SwagLabsLoginPage.class);
     }
 
-    public SwagLabsPageObject logout() {
+    public static SwagLabsLoginPage logout() {
         burgerMenu.click();
         logoutLink.click();
-        return page(SwagLabsPageObject.class);
+        return page(SwagLabsLoginPage.class);
     }
 
-    public SwagLabsPageObject addToCard() {
+    public static SwagLabsLoginPage addToCart() {
         addToCartButton.click();
-        return page(SwagLabsPageObject.class);
+        return page(SwagLabsLoginPage.class);
     }
 
-    public boolean hasBurgerMenu() {
+    public static boolean hasBurgerMenu() {
         return $("#react-burger-menu-btn").exists();
     }
 
-    public boolean isLoginPage() {
+    public static boolean isLoginPage() {
         return $(".login_container").exists();
     }
 
-    public boolean hasLoginError(String error_text) {
+    public static boolean hasLoginError(String error_text) {
         String error = $(by("data-test", "error")).getText();
         return error.contains(error_text);
     }

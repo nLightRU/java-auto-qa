@@ -1,6 +1,6 @@
 package SwagLabsTest;
 
-import me.nlight.PageObjects.SwagLabsPageObject;
+import me.nlight.PageObjects.SwagLabsLoginPage;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -12,7 +12,7 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @DisplayName("Standard login")
     void TestLogin() {
         String username = "standard_user", password = "secret_sauce";
-        SwagLabsPageObject page = open("/", SwagLabsPageObject.class);
+        SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
         assert page.hasBurgerMenu();
     }
@@ -22,7 +22,7 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @DisplayName("Standard logout")
     void TestLogout() {
         String username = "standard_user", password = "secret_sauce";
-        SwagLabsPageObject page = open("/", SwagLabsPageObject.class);
+        SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
         page.logout();
         assert page.isLoginPage();
@@ -33,7 +33,7 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @DisplayName("Locked out login")
     void TestLockedOutLogin() {
         String username = "locked_out_user", password ="secret_sauce";
-        SwagLabsPageObject page = open("/", SwagLabsPageObject.class);
+        SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
         assert page.hasLoginError("Epic sadface");
     }
