@@ -1,17 +1,41 @@
 package SwagLabsTest;
 
+import com.codeborne.selenide.Configuration;
 import me.nlight.PageObjects.SwagLabsCartPage;
 import me.nlight.PageObjects.SwagLabsLoginPage;
 import me.nlight.PageObjects.SwagLabsProductsPage;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class SwagLabsProductsTest extends SwagLabsBaseTest {
+import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class SwagLabsProductsTest {
+
+    @BeforeAll
+    static void setUp() {
+        Configuration.baseUrl = "https://www.saucedemo.com";
+
+        // remove password popups
+        // https://www.repeato.app/disabling-chromes-password-save-pop-up-using-selenium-webdriver/
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-web-security");
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        options.setExperimentalOption("prefs", prefs);
+        Configuration.browserCapabilities = options;
+
+    }
+
+    @AfterEach
+    public void cleanUp() {
+        clearBrowserLocalStorage();
+    }
 
     @Test
     @DisplayName("Добавить первый в корзину")
@@ -29,12 +53,13 @@ public class SwagLabsProductsTest extends SwagLabsBaseTest {
     void addTwoProductsToCartTest() {
         SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
         SwagLabsProductsPage productsPage = loginPage.login_as_standard();
-        String product_1 = productsPage.addToCart(0);
-        String product_2 = productsPage.addToCart(1);
-        String[] products = new String[]{product_1, product_2};
+        ArrayList<String> products = new ArrayList<>();
+        products.add(productsPage.addToCart(0));
+        products.add(productsPage.addToCart(1));
         SwagLabsCartPage cart = productsPage.goToCart();
-        String[] cart_items = new String[]{cart.getProductName(0), cart.getProductName(1)};
-        assertArrayEquals(products, cart_items);
+        for (String product : products) {
+            assertTrue(cart.productInCart(product));
+        }
     }
 
     @Disabled

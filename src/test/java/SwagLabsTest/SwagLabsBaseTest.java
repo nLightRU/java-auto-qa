@@ -1,11 +1,14 @@
 package SwagLabsTest;
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public class SwagLabsBaseTest {
     @BeforeAll
@@ -22,5 +25,10 @@ public class SwagLabsBaseTest {
         options.setExperimentalOption("prefs", prefs);
         Configuration.browserCapabilities = options;
 
+    }
+
+    @AfterEach
+    public void cleanUp() {
+        clearBrowserLocalStorage();
     }
 }

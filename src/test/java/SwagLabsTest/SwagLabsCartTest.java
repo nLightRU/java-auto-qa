@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class SwagLabsCartTest {
+public class SwagLabsCartTest extends SwagLabsBaseTest {
     @Test
     @DisplayName("Удаление первого товара из корзины")
     public void removeFirstItemTest() {

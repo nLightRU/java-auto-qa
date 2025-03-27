@@ -5,9 +5,7 @@ import me.nlight.PageObjects.SwagLabsLoginPage;
 import me.nlight.PageObjects.SwagLabsProductsPage;
 import org.junit.jupiter.api.*;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
