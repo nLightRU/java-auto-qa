@@ -1,12 +1,10 @@
-package SwagLabs;
+package SwagLabsTest;
 
-import me.nlight.PageObjects.SwagLabsPageObject;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 
-public class SwagLabsProductsTest extends SwagLabsBase{
+public class SwagLabsProductsTest extends SwagLabsBaseTest {
     @Test
     public void sortByNameTest() {
 

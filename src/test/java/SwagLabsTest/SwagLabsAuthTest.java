@@ -1,4 +1,4 @@
-package SwagLabs;
+package SwagLabsTest;
 
 import me.nlight.PageObjects.SwagLabsPageObject;
 import org.junit.jupiter.api.*;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class SwagLabsAuthTest extends SwagLabsBase {
+public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Test
     @Tag("Auth")
     @DisplayName("Standard login")
