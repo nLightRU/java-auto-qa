@@ -13,17 +13,21 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class SwagLabsProductsPage {
 
-    private static ElementsCollection inventoryList = $$(".inventory_item");
+    private static final ElementsCollection inventoryList = $$(".inventory_item");
 
     public String addFirstToCart() {
         inventoryList.first().find("button").click();
-        return inventoryList.first().find(by("data-test", "inventory-item-name")).text();
+        return inventoryList.first().find(".inventory_item_name").text();
     }
 
-    public SwagLabsProductsPage addTwoToCart() {
-        inventoryList.get(0).find("button").click();
-        inventoryList.get(1).find("button").click();
-        return page(SwagLabsProductsPage.class);
+    public String addLastToCart() {
+        inventoryList.last().find("button").click();
+        return inventoryList.last().find(".inventory_item_name").text();
+    }
+
+    public String addToCart(int index) {
+        inventoryList.get(index).find("button").click();
+        return inventoryList.get(index).find(".inventory_item_name").text();
     }
 
     public SwagLabsCartPage goToCart() {

@@ -10,7 +10,7 @@ import static me.nlight.PageObjects.SwagLabsLoginPage.*;
 public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Test
     @Tag("Auth")
-    @DisplayName("Standard login")
+    @DisplayName("Логин стандартным")
     void TestLogin() {
         String username = "standard_user", password = "secret_sauce";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
@@ -20,7 +20,7 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
 
     @Test
     @Tag("Auth")
-    @DisplayName("Standard logout")
+    @DisplayName("Выход из магазина")
     void TestLogout() {
         String username = "standard_user", password = "secret_sauce";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
@@ -31,7 +31,7 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
 
     @Test
     @Tag("Auth")
-    @DisplayName("Locked out login")
+    @DisplayName("Логин заблокированным")
     void TestLockedOutLogin() {
         String username = "locked_out_user", password ="secret_sauce";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
