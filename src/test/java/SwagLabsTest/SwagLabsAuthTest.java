@@ -4,6 +4,7 @@ import me.nlight.PageObjects.SwagLabsLoginPage;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.*;
+import static me.nlight.PageObjects.SwagLabsLoginPage.*;
 
 
 public class SwagLabsAuthTest extends SwagLabsBaseTest {
