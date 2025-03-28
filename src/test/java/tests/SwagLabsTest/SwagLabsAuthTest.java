@@ -7,6 +7,17 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class SwagLabsAuthTest extends SwagLabsBaseTest {
+
+    /*
+    For copy paste
+    @Test
+    @Tag("auth")
+    @DisplayName("")
+    void Test() {
+
+    }
+    */
+
     @Test
     @Tag("auth")
     @DisplayName("Логин стандартным")
@@ -35,6 +46,36 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
         String username = "locked_out_user", password ="secret_sauce";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
-        assert page.hasLoginError("Epic sadface");
+        assert page.checkErrorText("Epic sadface: Sorry, this user has been locked out.");
+    }
+
+    @Test
+    @Tag("auth")
+    @DisplayName("Логин с неправильным паролем")
+    void TestWrongPassword() {
+        String username =  "standard_user", password = "1234";
+        SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
+        page.login(username, password);
+        assert page.checkErrorText("Epic sadface: Username and password do not match any user in this service");
+    }
+
+    @Test
+    @Tag("auth")
+    @DisplayName("Неправильный юзернейм, правильный пароль")
+    void TestWrongLogin() {
+        String username =  "wrong", password = "secret_sauce";
+        SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
+        page.login(username, password);
+        assert page.checkErrorText("Epic sadface: Username and password do not match any user in this service");
+    }
+
+    @Test
+    @Tag("auth")
+    @DisplayName("Логин без пароля")
+    void TestLoginWithoutPassword() {
+        String username = "standard_user";
+        SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
+        page.login(username, "");
+        assert page.checkErrorText("Epic sadface: Password is required");
     }
 }

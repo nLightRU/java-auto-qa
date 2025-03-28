@@ -1,6 +1,5 @@
 package me.nlight.PageObjects;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -42,7 +41,9 @@ public class SwagLabsLoginPage {
 
     public SwagLabsLoginPage login(String username, String password) {
         loginFieldUsername.setValue(username);
-        loginFieldPassword.setValue(password);
+        if (!password.isEmpty()) {
+            loginFieldPassword.setValue(password);
+        }
         loginButton.click();
         return page(SwagLabsLoginPage.class);
     }
@@ -61,7 +62,7 @@ public class SwagLabsLoginPage {
         return $(".login_container").exists();
     }
 
-    public boolean hasLoginError(String error_text) {
+    public boolean checkErrorText(String error_text) {
         String error = $(by("data-test", "error")).getText();
         return error.contains(error_text);
     }
