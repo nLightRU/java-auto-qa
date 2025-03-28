@@ -25,6 +25,9 @@ public class SwagLabsLoginPage {
     @FindBy(xpath="//*[@id=\"logout_sidebar_link\"]")
     private static SelenideElement logoutLink;
 
+
+    public static final SelenideElement loginError = $(by("data-test", "error"));
+
     public SwagLabsProductsPage login_as_standard() {
         this.login("standard_user", "secret_sauce");
         return page(SwagLabsProductsPage.class);
@@ -40,7 +43,9 @@ public class SwagLabsLoginPage {
     }
 
     public SwagLabsLoginPage login(String username, String password) {
-        loginFieldUsername.setValue(username);
+        if (!username.isEmpty()) {
+            loginFieldUsername.setValue(username);
+        }
         if (!password.isEmpty()) {
             loginFieldPassword.setValue(password);
         }
@@ -54,16 +59,16 @@ public class SwagLabsLoginPage {
         return page(SwagLabsLoginPage.class);
     }
 
+    public SwagLabsLoginPage closeLoginError() {
+        $(by("data-test","error-button")).click();
+        return page(SwagLabsLoginPage.class);
+    }
+
     public boolean hasBurgerMenu() {
         return $("#react-burger-menu-btn").exists();
     }
 
     public boolean isLoginPage() {
         return $(".login_container").exists();
-    }
-
-    public boolean checkErrorText(String error_text) {
-        String error = $(by("data-test", "error")).getText();
-        return error.contains(error_text);
     }
 }
