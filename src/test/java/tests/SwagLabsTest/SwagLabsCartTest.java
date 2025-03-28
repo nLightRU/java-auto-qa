@@ -8,9 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+@DisplayName("Корзина")
 public class SwagLabsCartTest extends SwagLabsBaseTest {
 
     @BeforeEach
@@ -34,10 +34,12 @@ public class SwagLabsCartTest extends SwagLabsBaseTest {
     @DisplayName("Удаление двух товаров из корзины")
     public void removeTwoItemsTest() {
         SwagLabsProductsPage products = open("/inventory.html", SwagLabsProductsPage.class);
-        String product_1 = products.addToCart(0);
-        String product_2 = products.addToCart(1);
+        products.addToCart(0);
+        products.addToCart(1);
         SwagLabsCartPage cart = products.goToCart();
         cart.removeProductFromCart(0);
         cart.removeProductFromCart(0);
+        // TO DO: add assertion
+        assert false;
     }
 }

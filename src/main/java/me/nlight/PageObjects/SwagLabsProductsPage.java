@@ -1,12 +1,7 @@
 package me.nlight.PageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.selector.ByAttribute;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selenide.*;
@@ -14,6 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class SwagLabsProductsPage {
 
     private static final ElementsCollection inventoryList = $$(".inventory_item");
+    public static SelenideElement cartBadge = $(by("data-test", "shopping-cart-badge"));
 
     public String addFirstToCart() {
         inventoryList.first().find("button").click();
@@ -33,5 +29,13 @@ public class SwagLabsProductsPage {
     public SwagLabsCartPage goToCart() {
         $(by("data-test", "shopping-cart-link")).click();
         return page(SwagLabsCartPage.class);
+    }
+
+    public int getBadgeValue() {
+        return Integer.parseInt(cartBadge.text());
+    }
+
+    public SelenideElement getItemButton(int index) {
+        return inventoryList.get(index).find("button");
     }
 }
