@@ -11,12 +11,19 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SwagLabsProductsTest extends SwagLabsBaseTest{
+
+    @BeforeEach
+    public void login_as_standard()
+    {
+        SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
+        SwagLabsProductsPage products = loginPage.login_as_standard();
+    }
+
     @Test
     @DisplayName("Добавить первый в корзину")
     @Tag("Products")
     public void addOneToCartTest() {
-        SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
-        SwagLabsProductsPage products = loginPage.login_as_standard();
+        SwagLabsProductsPage products = open("/inventory.html", SwagLabsProductsPage.class);
         String addedProduct = products.addFirstToCart();
         SwagLabsCartPage cart = products.goToCart();
         String cartProduct = cart.getProductName(0);
@@ -27,8 +34,7 @@ public class SwagLabsProductsTest extends SwagLabsBaseTest{
     @DisplayName("Добавить два товара в корзину")
     @Tag("Products")
     void addTwoProductsToCartTest() {
-        SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
-        SwagLabsProductsPage productsPage = loginPage.login_as_standard();
+        SwagLabsProductsPage productsPage = open("/inventory.html", SwagLabsProductsPage.class);
         ArrayList<String> products = new ArrayList<>();
         products.add(productsPage.addToCart(0));
         products.add(productsPage.addToCart(1));
