@@ -1,4 +1,4 @@
-package CalculatorTest;
+package tests.CalculatorTest;
 
 import me.nlight.Calculator;
 import org.junit.jupiter.api.Assertions;

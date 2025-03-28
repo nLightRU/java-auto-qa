@@ -1,4 +1,4 @@
-package SwagLabsTest;
+package tests.SwagLabsTest;
 
 import me.nlight.PageObjects.SwagLabsCartPage;
 import me.nlight.PageObjects.SwagLabsLoginPage;
@@ -22,8 +22,9 @@ public class SwagLabsCartTest extends SwagLabsBaseTest {
     }
 
     @Test
-    @DisplayName("Удаление второго товара из корзины")
+    @DisplayName("Удаление двух товаров из корзины")
     public void removeTwoItemsTest() {
+        SwagLabsLoginPage loginPage = open("/", SwagLabsLoginPage.class);
 
     }
 }

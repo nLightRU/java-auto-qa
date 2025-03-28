@@ -1,4 +1,4 @@
-package SwagLabsTest;
+package tests.SwagLabsTest;
 
 import me.nlight.PageObjects.SwagLabsLoginPage;
 import org.junit.jupiter.api.*;
