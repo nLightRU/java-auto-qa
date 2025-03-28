@@ -7,6 +7,7 @@ public class TestConfig {
         return ConfigFactory.newInstance().create(IConfig.class, System.getProperties());
     }
 
-    public static String getStandartUser() {return getConfig().standardUser(); }
+    public static String getStandardUser() {return getConfig().standardUser(); }
+    public static String getLockedUser() {return getConfig().lockedUser();}
     public static String getPassword() { return getConfig().password(); }
 }

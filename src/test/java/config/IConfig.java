@@ -8,8 +8,11 @@ import org.aeonbits.owner.Config;
         "classpath:config.properties"
 })
 public interface IConfig extends Config {
-    @Key("standard.user")
+    @Key("user")
     String standardUser();
+
+    @Key("locked.user")
+    String lockedUser();
 
     @Key("password")
     String password();

@@ -10,6 +10,7 @@ public class SwagLabsProductsPage {
 
     private static final ElementsCollection inventoryList = $$(".inventory_item");
     public static SelenideElement cartBadge = $(by("data-test", "shopping-cart-badge"));
+    public static final SelenideElement title = $(by("data-test", "title"));
 
     public String addFirstToCart() {
         inventoryList.first().find("button").click();

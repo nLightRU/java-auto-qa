@@ -1,12 +1,13 @@
 package tests.SwagLabsTest;
 
+import config.TestConfig;
 import me.nlight.PageObjects.SwagLabsLoginPage;
+import me.nlight.PageObjects.SwagLabsProductsPage;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @DisplayName("Авторизация")
@@ -26,10 +27,13 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Логин стандартным")
     void TestLogin() {
-        String username = "standard_user", password = "secret_sauce";
+        String username = TestConfig.getStandardUser();
+        String password = TestConfig.getPassword();
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
-        page.login(username, password);
-        assertTrue(page.hasBurgerMenu());
+        SwagLabsLoginPage.loginFieldUsername.setValue(username);
+        SwagLabsLoginPage.loginFieldPassword.setValue(password);
+        SwagLabsLoginPage.loginButton.click();
+        SwagLabsProductsPage.title.shouldHave(text("Products"));
     }
 
     @Test
@@ -46,7 +50,8 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Логин заблокированным")
     void TestLockedOutLogin() {
-        String username = "locked_out_user", password ="secret_sauce";
+        String username = TestConfig.getLockedUser();
+        String password = TestConfig.getPassword();
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
         assertTrue(SwagLabsLoginPage.loginError.exists());
@@ -57,7 +62,8 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Логин с неправильным паролем")
     void TestWrongPassword() {
-        String username =  "standard_user", password = "1234";
+        String username = TestConfig.getStandardUser();
+        String password = "1234";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
         assertTrue(SwagLabsLoginPage.loginError.exists());
@@ -68,7 +74,8 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Неправильный юзернейм, правильный пароль")
     void TestWrongLogin() {
-        String username =  "wrong", password = "secret_sauce";
+        String username = "wrong";
+        String password = TestConfig.getPassword();
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
         page.login(username, password);
         assertTrue(SwagLabsLoginPage.loginError.exists());
@@ -79,9 +86,10 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Логин без пароля")
     void TestLoginWithoutPassword() {
-        String username = "standard_user";
+        String username = TestConfig.getStandardUser();
+        String password = "";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
-        page.login(username, "");
+        page.login(username, password);
         assertTrue(SwagLabsLoginPage.loginError.exists());
         SwagLabsLoginPage.loginError.shouldHave(text("Epic sadface: Password is required"));
     }
@@ -90,8 +98,10 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Логин без юзернейма")
     void TestLoginWithoutUsername() {
+        String username = "";
+        String password = TestConfig.getPassword();
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
-        page.login("", "1234");
+        page.login(username, password);
         assertTrue(SwagLabsLoginPage.loginError.exists());
         SwagLabsLoginPage.loginError.shouldHave(text("Epic sadface: Username is required"));
     }
@@ -100,8 +110,10 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Логин с пустыми полями")
     void TestLoginWithoutFill() {
+        String username = "";
+        String password = "";
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
-        page.login("", "");
+        page.login(username, password);
         assertTrue(SwagLabsLoginPage.loginError.exists());
         SwagLabsLoginPage.loginError.shouldHave(text("Epic sadface: Username is required"));
     }
@@ -110,8 +122,10 @@ public class SwagLabsAuthTest extends SwagLabsBaseTest {
     @Tag("auth")
     @DisplayName("Закрывается сообщение об ошибке")
     void TestCloseLoginError() {
+        String username = TestConfig.getLockedUser();
+        String password = TestConfig.getPassword();
         SwagLabsLoginPage page = open("/", SwagLabsLoginPage.class);
-        page.login_as_locked_out();
+        page.login(username, password);
         page.closeLoginError();
         assertFalse(SwagLabsLoginPage.loginError.exists());
     }

@@ -11,13 +11,13 @@ import static com.codeborne.selenide.Selenide.open;
 public class SwagLabsLoginPage {
 
     @FindBy(id="user-name")
-    private static SelenideElement loginFieldUsername;
+    public static SelenideElement loginFieldUsername;
 
     @FindBy(id="password")
-    private static SelenideElement loginFieldPassword;
+    public static SelenideElement loginFieldPassword;
 
     @FindBy(id="login-button")
-    private static SelenideElement loginButton;
+    public static SelenideElement loginButton;
 
     @FindBy(id="react-burger-menu-btn")
     private static SelenideElement burgerMenu;
