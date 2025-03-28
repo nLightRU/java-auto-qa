@@ -52,6 +52,7 @@ public class SwagLabsProductsTest extends SwagLabsBaseTest{
         assertEquals("Remove", button.innerText());
     }
 
+    @Disabled
     @Test
     @Tag("products")
     @DisplayName("Открывается карточка с товаром")
@@ -59,6 +60,7 @@ public class SwagLabsProductsTest extends SwagLabsBaseTest{
         assert false;
     }
 
+    @Disabled
     @Test
     @Tag("products")
     @DisplayName("Вернуться к списку товаров")

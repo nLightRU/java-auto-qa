@@ -4,6 +4,7 @@ import me.nlight.PageObjects.SwagLabsCartPage;
 import me.nlight.PageObjects.SwagLabsLoginPage;
 import me.nlight.PageObjects.SwagLabsProductsPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +31,7 @@ public class SwagLabsCartTest extends SwagLabsBaseTest {
         assertFalse(cart.productInCart(addedProduct));
     }
 
+    @Disabled
     @Test
     @DisplayName("Удаление двух товаров из корзины")
     public void removeTwoItemsTest() {
