@@ -1,4 +1,4 @@
-package me.nlight.PageObjects;
+package me.nlight.pageobjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

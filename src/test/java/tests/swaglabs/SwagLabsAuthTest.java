@@ -1,9 +1,11 @@
-package tests.SwagLabsTest;
+package tests.swaglabs;
 
 import config.TestConfig;
-import me.nlight.PageObjects.SwagLabsLoginPage;
-import me.nlight.PageObjects.SwagLabsProductsPage;
-import org.junit.jupiter.api.*;
+import me.nlight.pageobjects.SwagLabsLoginPage;
+import me.nlight.pageobjects.SwagLabsProductsPage;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;

@@ -1,9 +1,9 @@
-package tests.SwagLabsTest;
+package tests.swaglabs;
 
 import com.codeborne.selenide.SelenideElement;
-import me.nlight.PageObjects.SwagLabsCartPage;
-import me.nlight.PageObjects.SwagLabsLoginPage;
-import me.nlight.PageObjects.SwagLabsProductsPage;
+import me.nlight.pageobjects.SwagLabsCartPage;
+import me.nlight.pageobjects.SwagLabsLoginPage;
+import me.nlight.pageobjects.SwagLabsProductsPage;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;

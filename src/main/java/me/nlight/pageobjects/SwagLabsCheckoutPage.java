@@ -1,4 +1,4 @@
-package me.nlight.PageObjects;
+package me.nlight.pageobjects;
 
 public class SwagLabsCheckoutPage {
 }

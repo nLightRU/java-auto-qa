@@ -1,4 +1,4 @@
-package tests.SwagLabsTest;
+package tests.swaglabs;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;

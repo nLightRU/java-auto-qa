@@ -1,4 +1,4 @@
-package tests.SwagLabsTest;
+package tests.swaglabs;
 
 
 public class SwagLabsNewTest extends SwagLabsBaseTest {

@@ -1,8 +1,8 @@
-package tests.SwagLabsTest;
+package tests.swaglabs;
 
-import me.nlight.PageObjects.SwagLabsCartPage;
-import me.nlight.PageObjects.SwagLabsLoginPage;
-import me.nlight.PageObjects.SwagLabsProductsPage;
+import me.nlight.pageobjects.SwagLabsCartPage;
+import me.nlight.pageobjects.SwagLabsLoginPage;
+import me.nlight.pageobjects.SwagLabsProductsPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
