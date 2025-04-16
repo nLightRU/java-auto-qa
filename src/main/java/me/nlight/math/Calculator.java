@@ -1,4 +1,4 @@
-package me.nlight;
+package me.nlight.math;
 
 /**
  * This is simple class with two static methods

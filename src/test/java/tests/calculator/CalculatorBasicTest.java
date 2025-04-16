@@ -1,6 +1,6 @@
 package tests.calculator;
 
-import me.nlight.Calculator;
+import me.nlight.math.Calculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

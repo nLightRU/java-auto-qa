@@ -1,8 +1,8 @@
 package tests.swaglabs;
 
 import config.TestConfig;
-import me.nlight.pageobjects.SwagLabsLoginPage;
 import me.nlight.pageobjects.SwagLabsProductsPage;
+import me.nlight.pageobjects.SwagLabsLoginPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
